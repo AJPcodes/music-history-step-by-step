@@ -1,0 +1,128 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NSS Starter Kit - Music History</title>
+
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-material-design/dist/css/material-fullpalette.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-material-red-700">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Music History</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">List songs</a></li>
+          <li class="active"><a href="#">Add song</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search songs">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 padded--large">
+        
+      </div>
+      <div class="col-sm-6 padded--large">
+        <form>
+          <div class="form-group">
+            <label for="songName">Song name</label>
+            <input type="text" class="form-control" id="songName" placeholder="Another Brick In The Wall">
+          </div>
+
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="btn btn-material-red-400 dropdown-toggle" type="button" id="artistMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Artist
+                  <span class="caret"></span>
+                </button>
+                <ul id="artists" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="artistName">New Artist</label>
+                  <input type="text" class="form-control" id="artistName" placeholder="Pink Floyd">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="btn btn-material-red-400 dropdown-toggle" type="button" id="albumMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Album
+                  <span class="caret"></span>
+                </button>
+                <ul id="albums" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <label for="albumName">New Album</label>
+                <input type="text" class="form-control" id="albumName" placeholder="The Wall">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="albumYear">Year album released</label>
+                <input type="text" class="form-control" id="albumYear" placeholder="1968">
+              </div>
+            </div>
+          </div>
+
+        </form>
+        <button id="addSong" class="btn btn-raised btn-material-red-400">Add Song &gt;</button>
+      </div>
+      <div class="col-sm-3 padded--large">
+        
+      </div>
+    </div>
+  </div>
+  
+  <script data-main="javascripts/mainAdd" src="bower_components/requirejs/require.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

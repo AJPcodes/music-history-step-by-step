@@ -15,6 +15,22 @@
         "year": 1987
       },
       "artist": "Guns & Roses"
+    },
+    {
+      "name":"Rather Be",
+      "album": {
+        "name": "Rather Be",
+        "year": 2015
+      },
+      "artist": "Silent Bandit"
+    },
+    {
+      "name":"The Walk",
+      "album": {
+        "name": "How Do You Do",
+        "year": 2012
+      },
+      "artist": "Mayer Hawthorne"
     }
   ]
 }
