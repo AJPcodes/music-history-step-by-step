@@ -19,6 +19,10 @@ requirejs(
 
     $.material.init();
 
+    loadSongs(function(obj) {
+      console.log("allSongsObject",obj);
+    });
+
     $(document).on("click", "#artists li > a", function(e){
       selectedArtist = this.innerHTML;
     });
@@ -35,7 +39,7 @@ requirejs(
         "artist": selectedArtist || $("#artistName").val(),
         "album": {
           "name": selectedAlbum || $("#albumName").val(),
-          "year": selectedYear || $("#albumYear").val()
+          "year": selectedYear || parseInt($("#albumYear").val(), 10)
         }
       };
 
