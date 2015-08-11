@@ -13,6 +13,20 @@ define(["jquery", "lodash", "getTemplates", "getUnique"], function($, _, templat
   };
 
   eventHandlers.prototype.init = function(options) {
+    $(document).on("click", "a[id^='delete#']", function() {
+
+      console.log(this.id, "https://nss-demo-instructor.firebaseio.com/songs/" + this.id.split("#")[1] + ".json");
+
+      $.ajax({
+        url: "https://nss-demo-instructor.firebaseio.com/songs/" + this.id.split("#")[1] + ".json",
+        method: "DELETE",
+        contentType: "application/json"
+      }).done(function(song){
+        console.log("Successfully deleted song");
+      });
+    })
+
+
     // Handle the user click on the "Clear Filter" button
     $("#clearFilter").click(function(e) {
 

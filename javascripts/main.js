@@ -18,8 +18,7 @@ requirejs.config({
 });
 
 requirejs(
-  ["jquery", "lodash", "firebase", "hbs", 
-   "bootstrap", "material", "getUnique", 
+  ["jquery", "lodash", "firebase", "hbs", "bootstrap", "material", "getUnique",
    "getTemplates", "eventHandlers"],
   function($, _, _firebase, Handlebars, bootstrap, material, unique, templates, eventHandlers) {
     var allSongsObject = {};
@@ -43,8 +42,12 @@ requirejs(
 
       // Convert Firebase's object of objects into an array of objects
       for (var key in songs) {
-        allSongsArray[allSongsArray.length] = songs[key];
+        var songWithId = songs[key];
+        songWithId.key = key;
+        allSongsArray[allSongsArray.length] = songWithId;
       }
+
+      console.log("allSongsArray",allSongsArray);
 
       // Now create my base object that will get bound to the 
       // song list Handlebar template (Handlebar templates
@@ -65,7 +68,7 @@ requirejs(
       var uniqueArtists = unique(allSongsArray).uniqueArtists;
 
       // Bind the unique artists to the filteredArtists template
-      $("#artists").html(templates.artists({artists:uniqueArtists }));
+      $("#artists").html(templates.artists({artists:uniqueArtists}));
 
       // Make an array of unique album names
       var uniqueAlbums = unique(allSongsArray).uniqueAlbums;
