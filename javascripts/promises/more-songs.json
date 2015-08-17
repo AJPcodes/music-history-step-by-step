@@ -1,0 +1,20 @@
+{
+  "songs": [
+    {
+      "name":"Test",
+      "album": {
+        "name": "Eliminator",
+        "year": 1985
+      },
+      "artist": "ZZ Top"
+    },
+    {
+      "name":"Another Test",
+      "album": {
+        "name": "Appetite For Destruction",
+        "year": 1987
+      },
+      "artist": "Guns & Roses"
+    }
+  ]
+}

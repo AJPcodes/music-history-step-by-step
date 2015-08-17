@@ -1,22 +1,23 @@
-define(["jquery", "lodash", "getTemplates", "getUnique"], function($, _, templates, unique) {
+define(function(require) {
+  var $ = require("jquery");
+  var _ = require("lodash");
+  var templates = require("es6!getTemplates");
+  var getUnique = require("es6!getUnique");
 
   var config = {
     originalSongsArray: []
   };
 
-  var eventHandlers = function() {
-
-  };
+  var eventHandlers = function() { };
 
   eventHandlers.prototype.updateSongs = function(songArray) {
     config.originalSongsArray = songArray;
   };
 
   eventHandlers.prototype.init = function(options) {
+
+    // Handle deleting songs
     $(document).on("click", "a[id^='delete#']", function() {
-
-      console.log(this.id, "https://nss-demo-instructor.firebaseio.com/songs/" + this.id.split("#")[1] + ".json");
-
       $.ajax({
         url: "https://nss-demo-instructor.firebaseio.com/songs/" + this.id.split("#")[1] + ".json",
         method: "DELETE",
@@ -24,8 +25,7 @@ define(["jquery", "lodash", "getTemplates", "getUnique"], function($, _, templat
       }).done(function(song){
         console.log("Successfully deleted song");
       });
-    })
-
+    });
 
     // Handle the user click on the "Clear Filter" button
     $("#clearFilter").click(function(e) {
@@ -33,16 +33,15 @@ define(["jquery", "lodash", "getTemplates", "getUnique"], function($, _, templat
       // Here's where I reset the filtered array back to 
       // the value of the copy I created above
       allSongsArray = config.originalSongsArray;
+      var unique = getUnique(config.originalSongsArray);
 
-      $("#songList").html(templates.songs({songs: allSongsArray}));
+      $("#songList").html(templates.songTpl({songs: config.originalSongsArray}));
 
       // Create unique artists again before binding to template
-      var uniqueArtists = unique(allSongsArray).uniqueArtists;
-      $("#artists").html(templates.artists({artists:uniqueArtists}));
+      $("#artists").html(templates.artistTpl({artists:unique.artists}));
 
       // Create unique albums again
-      var uniqueAlbums = unique(allSongsArray).uniqueAlbums;
-      $("#albums").html(templates.albums({albums:uniqueAlbums}));
+      $("#albums").html(templates.albumTpl({albums:unique.albums}));
 
     });
 
@@ -59,12 +58,12 @@ define(["jquery", "lodash", "getTemplates", "getUnique"], function($, _, templat
                             .uniq('album.name')
                             .pluck('album')
                             .value();
-      $("#albums").html(templates.albums({albums:matchingAlbums}));
+      $("#albums").html(templates.albumTpl({albums:matchingAlbums}));
 
       allSongsArray = _.filter(config.originalSongsArray, function(song) {
         return song.artist === selectedArtist;
       });
-      $("#songList").html(templates.songs({songs:allSongsArray}));
+      $("#songList").html(templates.songTpl({songs:allSongsArray}));
 
     });
 
@@ -83,15 +82,15 @@ define(["jquery", "lodash", "getTemplates", "getUnique"], function($, _, templat
                             .uniq('artist')
                             .pluck('artist')
                             .value();
-      $("#artists").html(templates.artists({artists:matchingArtists}));
+      $("#artists").html(templates.artistTpl({artists:matchingArtists}));
 
       allSongsArray = _.filter(config.originalSongsArray, function(song) {
         return song.album.name === selectedAlbum;
       });
-      $("#songList").html(templates.songs({songs:allSongsArray}));
+      $("#songList").html(templates.songTpl({songs:allSongsArray}));
     });
   };
 
-  return new eventHandlers;
+  return new eventHandlers();
 
 });

@@ -83,10 +83,10 @@ requirejs(
 
       var newSong = {
         "name": $("#songName").val(),
-        "artist": selectedArtist || $("#artistName").val(),
+        "artist": $("#artistName").val(),
         "album": {
-          "name": selectedAlbum || $("#albumName").val(),
-          "year": selectedYear || parseInt($("#albumYear").val(), 10)
+          "name": $("#albumName").val(),
+          "year": parseInt($("#albumYear").val(), 10)
         }
       };
 
@@ -99,9 +99,6 @@ requirejs(
         method: "POST",
         data: JSON.stringify(newSong)
       }).done(function(addedSong) {
-        selectedArtist = "";
-        selectedAlbum = "";
-        selectedYear = "";
         console.log("Your new song is", addedSong);
 
         $("#songName").val("");
