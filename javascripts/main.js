@@ -21,8 +21,25 @@ requirejs.config({
 });
 
 requirejs(
-  ["dependencies", "core_list"],
-  function(dependencies, core_list) {
+  ["firebase", "dependencies"],
+  function(fb, dependencies) {
+
+    var ref = new Firebase("https://nss-demo-instructor.firebaseio.com/");
+    ref.authWithOAuthPopup("github", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        require(["core_list"], function() {});
+        console.log("Authenticated successfully with payload:", authData);
+      }
+    });
 
   }
 );
+
+
+
+
+
+
+
