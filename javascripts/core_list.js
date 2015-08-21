@@ -3,23 +3,30 @@ define(function(require) {
   var getUnique = require("es6!getUnique");
   var templates = require("es6!getTemplates");
   var eventHandlers = require("eventHandlers");
+  var auth = require("authentication");
 
   var allSongsObject = {};
   var allSongsArray = [];
   var originalSongsArray = [];
   var unique;
+  var currentUser = auth.getUid();
 
   // Initialize the event handlers
   eventHandlers.init({songArray: originalSongsArray});
 
   // Create a reference to your Firebase database
-  var myFirebaseRef = new Firebase("https://nss-demo-instructor.firebaseio.com");
+  var songsRef = new Firebase("https://nss-demo-instructor.firebaseio.com");
 
   // Listen for when anything changes on the "songs" key
-  myFirebaseRef.child("songs").on("value", function(snapshot) {
+  songsRef
+    .child("songs")
+    .orderByChild("uid")
+    .equalTo(currentUser)
+    .on("value", function(snapshot) {
 
     // Store the entire songs key in a local variable
     var songs = snapshot.val();
+    console.log("songs",songs);
 
     // Empty out the module-level song array
     allSongsArray = [];
@@ -30,7 +37,6 @@ define(function(require) {
       songWithId.key = key;
       allSongsArray[allSongsArray.length] = songWithId;
     }
-    console.log("allSongsArray",allSongsArray);
 
     // Get unique albums and artists from the song array
     unique = getUnique(allSongsArray);

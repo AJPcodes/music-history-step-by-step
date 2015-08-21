@@ -1,45 +1,40 @@
 requirejs.config({
-  baseUrl: './javascripts',
+  baseUrl: "./javascripts",
   paths: {
-    'jquery': '../lib/bower_components/jquery/dist/jquery.min',
-    'firebase': '../lib/bower_components/firebase/firebase',
-    'lodash': '../lib/bower_components/lodash/lodash.min',
-    'hbs': '../lib/bower_components/require-handlebars-plugin/hbs',
-    'bootstrap': '../lib/bower_components/bootstrap/dist/js/bootstrap.min',
-    'q': '../lib/bower_components/q/q',
-    'material': '../lib/bower_components/bootstrap-material-design/dist/js/material.min',
-    'es6': "../lib/node_modules/requirejs-babel/es6",
-    'babel': "../lib/node_modules/requirejs-babel/babel-5.8.22.min"
+    "jquery": "../lib/bower_components/jquery/dist/jquery.min",
+    "hbs": "../lib/bower_components/require-handlebars-plugin/hbs",
+    "lodash": "../lib/bower_components/lodash/lodash.min",
+    "q": "../lib/bower_components/q/q",
+    "bootstrap": "../lib/bower_components/bootstrap/dist/js/bootstrap.min",
+    "selectize": "../lib/bower_components/selectize/dist/js/selectize.min",
+    "oauth": "../lib/bower_components/oauth-js/dist/oauth.min",
+    "sifter": "../lib/bower_components/sifter/sifter.min",
+    "microplugin": "../lib/bower_components/microplugin/src/microplugin",
+    "firebase": "../lib/bower_components/firebase/firebase",
+    "material": "../lib/bower_components/bootstrap-material-design/dist/js/material.min",
+    "es6": "../lib/node_modules/requirejs-babel/es6",
+    "babel": "../lib/node_modules/requirejs-babel/babel-5.8.22.min"
   },
   shim: {
-    'bootstrap': ['jquery'],
-    'material': ['bootstrap'],
-    'firebase': {
-        exports: 'Firebase'
+    "bootstrap": ["jquery"],
+    "material": ["bootstrap"],
+    "selectize": ["bootstrap", "sifter", "microplugin"],
+    "firebase": {
+        exports: "Firebase"
     }
   }
 });
 
 requirejs(
-  ["firebase", "dependencies"],
-  function(fb, dependencies) {
+["dependencies", "check_auth", "navigation"], 
+function(deps, check_auth, nav) {
 
-    var ref = new Firebase("https://nss-demo-instructor.firebaseio.com/");
-    ref.authWithOAuthPopup("github", function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        require(["core_list"], function() {});
-        console.log("Authenticated successfully with payload:", authData);
-      }
+  check_auth()
+    .then(function() {
+      require(["core_list", "core_form"], function() {});
+    })
+    .fail(function(error) {
+      console.log("error", error);
     });
 
-  }
-);
-
-
-
-
-
-
-
+});
