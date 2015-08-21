@@ -1,29 +1,13 @@
-requirejs.config({
-  baseUrl: './javascripts',
-  paths: {
-    'jquery': '../bower_components/jquery/dist/jquery.min',
-    'hbs': '../bower_components/require-handlebars-plugin/hbs',
-    'lodash': '../bower_components/lodash/lodash.min',
-    'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
-    'selectize': '../bower_components/selectize/dist/js/selectize.min',
-    'sifter': '../bower_components/sifter/sifter.min',
-    'microplugin': '../bower_components/microplugin/src/microplugin',
-    'firebase': '../bower_components/firebase/firebase',
-    'material': '../bower_components/bootstrap-material-design/dist/js/material.min'
-  },
-  shim: {
-    'bootstrap': ['jquery'],
-    'material': ['bootstrap'],
-    'selectize': ['bootstrap', 'sifter', 'microplugin'],
-    'firebase': {
-        exports: 'Firebase'
-    }
-  }
-});
+define(function(require) {
+    // Dependencies
+    var $ = require("jquery");
+    var fire = require("firebase");
+    var _selectize = require("selectize");
+    var auth = require("authentication");
+    var getUnique = require("es6!getUnique");
+    var templates = require("es6!getTemplates");
 
-requirejs(
-  ["jquery", "hbs", "firebase", "bootstrap", "selectize", "material", "getTemplates", "getUnique"], 
-  function($, Handlebars, _fb, bootstrap, selectize, material, templates, unique) {
+    // Module variables
     var selectedArtist, selectedAlbum, selectedYear;
 
     // Create a reference to your Firebase database
@@ -58,20 +42,15 @@ requirejs(
         set it back to the original data.
        */
       originalSongsArray = allSongsArray.slice();
-
       // Make an array of unique artist names
-      var uniqueArtists = unique(allSongsArray).uniqueArtists;
+      unique = getUnique(allSongsArray);
 
       // Bind the unique artists to the filteredArtists template
-      $("#artistName").html(templates.formArtists({artists:uniqueArtists}));
+      $("#artistName").html(templates.newArtistTpl({artists:unique.artists}));
       $('#artistName').selectize({create: true});
 
-      // Make an array of unique album names
-      var uniqueAlbums = unique(allSongsArray).uniqueAlbums;
-      console.log("uniqueAlbums",uniqueAlbums);
-
       // Bind the unique albums to the filteredAlbums template
-      $("#albumName").html(templates.formAlbums({albums:uniqueAlbums}));
+      $("#albumName").html(templates.newAlbumTpl({albums:unique.albums}));
       $('#albumName').selectize({create: true});
     });
 
@@ -87,12 +66,9 @@ requirejs(
         "album": {
           "name": $("#albumName").val(),
           "year": parseInt($("#albumYear").val(), 10)
-        }
+        },
+        "uid": auth.getUid()
       };
-
-      console.log("newSong",newSong);
-
-      // return false;
 
       $.ajax({
         url: "https://nss-demo-instructor.firebaseio.com/songs.json",
@@ -111,6 +87,4 @@ requirejs(
       });
     });
 
-
-  }
-);
+});
