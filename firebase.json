@@ -1,0 +1,9 @@
+{
+  "firebase": "nss-demo-instructor",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

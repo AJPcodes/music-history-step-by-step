@@ -23,6 +23,7 @@
     "firebase": "~2.2.9",
     "selectize": "~0.12.1",
     "q": "~1.0.1",
-    "oauth-js": "~0.4.3"
+    "oauth-js": "~0.4.3",
+    "requirejs-babel": "~0.0.7"
   }
 }

@@ -12,8 +12,8 @@ requirejs.config({
     "microplugin": "../lib/bower_components/microplugin/src/microplugin",
     "firebase": "../lib/bower_components/firebase/firebase",
     "material": "../lib/bower_components/bootstrap-material-design/dist/js/material.min",
-    "es6": "../lib/node_modules/requirejs-babel/es6",
-    "babel": "../lib/node_modules/requirejs-babel/babel-5.8.22.min"
+    "es6": "../lib/bower_components/requirejs-babel/es6",
+    "babel": "../lib/bower_components/requirejs-babel/babel-5.8.22.min"
   },
   shim: {
     "bootstrap": ["jquery"],
