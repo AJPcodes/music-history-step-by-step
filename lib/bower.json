@@ -13,17 +13,21 @@
     "tests"
   ],
   "dependencies": {
-    "require-handlebars-plugin": "~0.11.3",
-    "handlebars": "~3.0.3",
-    "requirejs": "~2.1.20",
-    "jquery": "~2.1.4",
+    "angular": "~1.4.5",
+    "angular-filter": "~0.5.5",
+    "angular-route": "~1.4.5",
+    "angularfire": "~1.1.2",
     "bootstrap": "~3.3.5",
     "bootstrap-material-design": "~0.3.0",
-    "lodash": "~3.10.1",
     "firebase": "~2.2.9",
-    "selectize": "~0.12.1",
-    "q": "~1.0.1",
+    "handlebars": "~3.0.3",
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.1",
     "oauth-js": "~0.4.3",
-    "requirejs-babel": "~0.0.7"
+    "q": "~1.0.1",
+    "require-handlebars-plugin": "~0.11.3",
+    "requirejs": "~2.1.20",
+    "requirejs-babel": "~0.0.7",
+    "selectize": "~0.12.1"
   }
 }

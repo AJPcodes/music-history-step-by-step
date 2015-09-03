@@ -13,15 +13,26 @@ requirejs.config({
     "firebase": "../lib/bower_components/firebase/firebase",
     "material": "../lib/bower_components/bootstrap-material-design/dist/js/material.min",
     "es6": "../lib/bower_components/requirejs-babel/es6",
-    "babel": "../lib/bower_components/requirejs-babel/babel-5.8.22.min"
+    "babel": "../lib/bower_components/requirejs-babel/babel-5.8.22.min",
+    "angular": "../lib/bower_components/angular/angular.min",
+    "angular-route": "../lib/bower_components/angular-route/angular-route.min",
+    "angular-filter": "../lib/bower_components/angular-filter/dist/angular-filter.min",
+    "angularfire": "../lib/bower_components/angularfire/dist/angularfire.min"
   },
   shim: {
+    "angular" : {"exports" : "angular"},
+    "angular-route": ["angular"],
+    "angular-filter": ["angular"],
     "bootstrap": ["jquery"],
     "material": ["bootstrap"],
+    "angularfire": ["angular", "firebase"],
     "selectize": ["bootstrap", "sifter", "microplugin"],
     "firebase": {
         exports: "Firebase"
-    }
+    },
+    priority: [
+      "angular"
+    ]
   }
 });
 
@@ -31,7 +42,7 @@ function(deps, check_auth, nav) {
 
   check_auth()
     .then(function() {
-      require(["core_list", "core_form"], function() {});
+      require(["core_list"], function() {});
     })
     .fail(function(error) {
       console.log("error", error);
