@@ -13,7 +13,7 @@ $primary-color: #666;
 }
 
 @mixin padded($size:5px) {
-  padding: $size;
+  padding: $size $size $size $size;
 }
 
 .bordered { 
@@ -25,11 +25,11 @@ $primary-color: #666;
 }
 
 .padded--medium {
-  @include padded(10px);
+  @include padded(15px);
 }
 
 .padded--large {
-  @include padded(15px);
+  @include padded(40px);
 }
 
 .separation--top {
@@ -38,4 +38,12 @@ $primary-color: #666;
 
 .hidden {
   display: none;
+}
+
+.input--wide {
+  min-width: 250px;
+}
+
+.nav-search-field {
+  margin-right: 200px;
 }

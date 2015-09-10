@@ -1,49 +1,18 @@
 <div class="song-list container-fluid">
   <div class="row">
-    <div class="col-sm-3 padded--large">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="dropdown">
-            <button class="btn dropdown-toggle btn-material-red-400" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Artists
-              <span class="caret"></span>
-            </button>
-            <ul id="artists" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li ng-repeat="song in songList.songs | unique: 'artist'">{{ song.artist }}</li
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="dropdown">
-            <button class="btn btn-material-red-400 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Albums
-              <span class="caret"></span>
-            </button>
-            <ul id="albums" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li ng-repeat="song in songList.songs | unique: 'album.name'">{{ song.album.name }}</li>
-            </ul>
-          </div>            
-        </div>
-      </div>
-      <button type="button" id="clearFilter" class="btn btn-info">Clear Filter</button>
-    </div>
-    <div class="col-sm-9 padded--medium">
-      <div id="songList">
-        <div ng-repeat="song in songList.songs">
-          <div>
-            <h3>{{song.name}} ({{song.album.year}})</h3>
-            Performed by {{song.artist}} on the album {{song.album.name}}
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <a href="#" ng-click="editSong(song)">Edit</a> | 
-              <a href="#" ng-click="deleteSong(song)">Delete</a>
-            </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 padded--large">
+      <div ng-repeat="song in songList.songs | filter: query">
+        <h3>{{song.name}} ({{song.album.year}})</h3>
+        Performed by {{song.artist}} on the album {{song.album.name}}
+        <div class="row">
+          <div class="col-sm-12">
+            <a href="#" ng-click="editSong(song)">Edit</a> | 
+            <a href="#" ng-click="deleteSong(song)">Delete</a>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-sm-2"></div>
   </div>
 </div>

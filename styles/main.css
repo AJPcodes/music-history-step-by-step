@@ -2,18 +2,24 @@
   border: 1px solid black; }
 
 .padded--small {
-  padding: 5px; }
+  padding: 5px 5px 5px 5px; }
 
 .padded--medium {
-  padding: 10px; }
+  padding: 15px 15px 15px 15px; }
 
 .padded--large {
-  padding: 15px; }
+  padding: 40px 40px 40px 40px; }
 
 .separation--top {
   margin: 20px 0 0 0; }
 
 .hidden {
   display: none; }
+
+.input--wide {
+  min-width: 250px; }
+
+.nav-search-field {
+  margin-right: 200px; }
 
 /*# sourceMappingURL=main.css.map */

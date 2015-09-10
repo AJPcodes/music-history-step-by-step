@@ -7,27 +7,34 @@
       <form>
         <div class="form-group">
           <label for="songName">Song name</label>
-          <input type="text" class="form-control" id="songName" placeholder="Another Brick In The Wall">
-        </div>
-
-
-        <div class="form-group">
-          <label for="artistName">New Artist</label>
-          <select class="form-control" id="artistName" placeholder="Pink Floyd"></select>
+          <input type="text" class="form-control" ng-model="songForm.newSong.name" placeholder="Another Brick In The Wall">
         </div>
 
         <div class="form-group">
-          <label for="albumName">New Album</label>
-          <select class="form-control" id="albumName" placeholder="The Wall"></select>
+          <label for="artistName">Artist</label>
+          <input type="text" 
+                 class="form-control" 
+                 ng-model="songForm.newSong.artist" 
+                 placeholder="Pink Floyd">
+        </div>
+
+        <div class="form-group">
+          <label for="albumName">Album</label>
+          <input type="text" 
+                 class="form-control" 
+                 ng-model="songForm.newSong.albumName" 
+                 placeholder="Another Brick In The Wall">
         </div>
 
         <div class="form-group">
           <label for="albumYear">Year album released</label>
-          <input type="text" class="form-control" id="albumYear" placeholder="1968">
+          <input type="text" 
+                 class="form-control" 
+                 ng-model="songForm.newSong.albumYear" placeholder="1968">
         </div>
 
       </form>
-      <button id="addSong" class="btn btn-raised btn-material-red-400">Add Song &gt;</button>
+      <button ng-click="songForm.addSong()" class="btn btn-raised btn-material-red-400">Add Song &gt;</button>
     </div>
     <div class="col-sm-3 padded--large">
       
