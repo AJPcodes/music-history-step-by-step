@@ -1,4 +1,4 @@
-require.config({
+({
   baseUrl: "./javascripts",
   paths: {
     "jquery": "../lib/bower_components/jquery/dist/jquery.min",
@@ -25,20 +25,7 @@ require.config({
     "firebase": {
         exports: "Firebase"
     }
-  }
-});
-
-require(
-  ["dependencies", "authentication", "navigation"], 
-  function(deps, authentication, nav) {
-
-    authentication.github()
-      .then(function() {
-        require(["core_list"], function() {});
-      })
-      .fail(function(error) {
-        console.log("error", error);
-      });
-
-  }
-);
+  },
+  name: "main",
+  out: "main-built.js"
+})
